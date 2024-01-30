@@ -29,3 +29,4 @@ Things you may want to cover:
 
 *note
 -because rails and ruby version not supported. can't use several syntax like session[:game]['current_player'] == 1 ? 'X' : 'O', session[:game][:player2][:name:] 
+-use branch development
