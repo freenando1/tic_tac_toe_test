@@ -1,0 +1,38 @@
+<h1>Tic Tac Toe</h1>
+<p>game : <%= session[:game].inspect %></p>
+<p>current_player : <%= session[:game]['current_player']%></p>
+<p>board :<%= session[:game]['board'].inspect %></p>
+
+<%= form_tag({ controller: 'tic_tac_toe', action: 'end_turn' }, method: 'post') do %>
+
+  <% if flash[:notice] %>
+  <div class="flash-notice">
+    <%= flash[:notice] %>
+  </div>
+  <% else %>  
+
+  <table border="1">
+    <% (0..2).each do |row| %>
+      <tr>
+        <% (0..2).each do |col| %>
+          <td><%= button_tag type: 'submit', name: 'move', value: (row * 3 + col), disabled: !session[:game]['board'][row * 3 + col].nil? do %>
+            <%= session[:game]['board'][row * 3 + col] %>
+          <% end %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <% end %>
+  <% if session[:game]['current_player'] == 1 %>
+    <p><%= session[:game]['player1']['name']%>(X) turn!</p>
+  <% else %>
+    <p><%= session[:game]['player2']['name']%>(O) turn!</p>
+  <% end %>
+  <p>select the empty box</p>
+
+<% end %>
+
+<% unless session[:game]['player1']['last_move'].nil? && session[:game]['player2']['last_move'].nil? %>
+<%= button_to 'undo', { controller: 'tic_tac_toe', action: 'undo_turn' }, method: :post %>
+<% end %>
+<%= button_to 'Reset Game', { controller: 'tic_tac_toe', action: 'reset' }, method: :post %>
