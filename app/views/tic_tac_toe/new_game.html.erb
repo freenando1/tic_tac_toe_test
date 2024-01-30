@@ -6,9 +6,9 @@
 <%= form_tag({ controller: 'tic_tac_toe', action: 'end_turn' }, method: 'post') do %>
 
   <% if flash[:notice] %>
-  <div class="flash-notice">
-    <%= flash[:notice] %>
-  </div>
+    <div class="flash-notice">
+      <%= flash[:notice] %>
+    </div>
   <% else %>  
 
   <table border="1">
@@ -33,6 +33,6 @@
 <% end %>
 
 <% unless session[:game]['player1']['last_move'].nil? && session[:game]['player2']['last_move'].nil? %>
-<%= button_to 'undo', { controller: 'tic_tac_toe', action: 'undo_turn' }, method: :post %>
+  <%= button_to 'undo', { controller: 'tic_tac_toe', action: 'undo_turn' }, method: :post %>
 <% end %>
 <%= button_to 'Reset Game', { controller: 'tic_tac_toe', action: 'reset' }, method: :post %>

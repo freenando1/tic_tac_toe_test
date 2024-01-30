@@ -129,7 +129,7 @@ class TicTacToeController < ApplicationController
   
   def check_tie
     if session[:game]['board'].all? { |cell| !cell.nil? }
-      flash[:notice] = "It's a tie!"
+      flash[:notice] = "Draw"
     end
   end
 end
